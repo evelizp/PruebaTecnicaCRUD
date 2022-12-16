@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CRUD Springboot</title>
+ 
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+ th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+ <div class="container">
+  <br>
+  <h2 th:if="${list.isEmpty()}">
+No hay clientes</h2>
+<div th:if="${!list.isEmpty()}">
+  <h2>
+Gestion de Clientes</h2>
+<br>
+   <table class="table">
+    <thead>
+<tr>
+      <th>Id</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Dirección</th>
+      <th>Email</th>
+      <th>Celular</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+     </tr>
+</thead>
+    <tbody>
+<tr th:each="cliente : ${list}">
+      <td th:text="${cliente.id}">
+      <td th:text="${cliente.nombres}">
+      <td th:text="${cliente.apellidos}">
+      <td th:text="${cliente.direccion}">
+      <td th:text="${cliente.email}">
+      <td th:text="${cliente.celular}">
+      <td><a class="btn btn-info" th:href="@{/save/{id}(id=${cliente.id})}">Editar</a></td>
+      <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${cliente.id})}">Eliminar</a></td>
+     </tr>
+</tbody>
+   </table>
+</div>
+<br>
+  <div>
+   <a href="/save/0" class="btn btn-primary">Agregar</a>
+  </div>
+</div>
+</body>
+</html>
